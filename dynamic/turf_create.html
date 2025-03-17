@@ -1,0 +1,7 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'turf_create.css' %}">
+<form method="POST" enctype="multipart/form-data" class="TurfForm">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload Turf</button>
+</form>

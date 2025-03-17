@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Events - Sports Hub{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center mb-4">Upcoming Events</h1>
+    
+    <div class="grid">
+        {% for event in events %}
+        <div class="card equipment-card">
+            <div class="equipment-image">
+                <div class="placeholder">
+                    <div class="placeholder-content">
+                        <i class="fas fa-trophy"></i>
+                        <span>Sports Event</span>
+                    </div>
+                </div>
+            </div>
+            <div class="equipment-details">
+                <h3>{{ event.name }}</h3>
+                <p class="description">{{ event.event_details }}</p>
+                <div class="equipment-meta">
+                    <span class="price">₹{{ event.ticket_price }}</span>
+                    <span class="condition"><i class="fas fa-calendar"></i> {{ event.date_time|date:"F d, Y" }}</span>
+                </div>
+                <p class="location"><i class="fas fa-map-marker-alt"></i> {{ event.location }}</p>
+                <a href="{% url 'event_booking' event.id %}" class="btn btn-primary">Book Tickets</a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="alert alert-info">
+            No events scheduled at the moment.
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

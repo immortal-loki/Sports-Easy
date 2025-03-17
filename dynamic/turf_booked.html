@@ -1,0 +1,54 @@
+<!-- turf_booked.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Booking Confirmation - Sports Hub{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Booking Confirmation</h2>
+        </div>
+        <div class="card-body">
+            <div class="success-icon text-center mb-4">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            
+            <div class="booking-details">
+                <h3 class="text-center mb-4">Your booking has been confirmed!</h3>
+                
+                <div class="detail-row">
+                    <i class="fas fa-futbol"></i>
+                    <span>Turf: {{ booking.turf.name }}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: {{ booking.slot_time|date:"F d, Y" }}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <i class="fas fa-clock"></i>
+                    <span>Time: {{ booking.slot_time|time:"g:i A" }}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <i class="fas fa-hourglass-half"></i>
+                    <span>Duration: {{ booking.duration }} hours</span>
+                </div>
+                
+                <div class="detail-row">
+                    <i class="fas fa-rupee-sign"></i>
+                    <span>Total Amount: ₹{{ total_amount }}</span>
+                </div>
+            </div>
+            
+            <div class="action-buttons mt-4 text-center">
+                <a href="{% url 'turf_list' %}" class="btn btn-primary">Book Another Turf</a>
+                <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

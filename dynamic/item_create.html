@@ -1,0 +1,7 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'item_create.css' %}">
+<form method="POST" enctype="multipart/form-data" class="ItemForm">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Item</button>
+</form>

@@ -1,0 +1,97 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set a nice background and font style */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Style the main container */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Header styles */
+h1 {
+    font-size: 2rem;
+    color: #2d3e50;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #2d3e50;
+    margin-bottom: 15px;
+}
+
+h3 {
+    font-size: 1.2rem;
+    color: #2d3e50;
+    margin-top: 20px;
+}
+
+/* Paragraph and labels */
+p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+/* Strong tags (labels) for important details */
+strong {
+    color: #007bff;
+}
+
+/* Link style for "Back to Turfs" */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+a:hover {
+    background-color: #0056b3;
+}
+
+/* Add some spacing between sections */
+section {
+    margin-bottom: 20px;
+}
+
+/* Styling for the details box */
+.booking-details {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid #007bff;
+}
+
+/* Price details */
+.price-details p {
+    font-size: 1.1rem;
+}
+
+/* Styling for the turf name */
+.turf-name {
+    font-weight: bold;
+    color: #007bff;
+    font-size: 1.2rem;
+}

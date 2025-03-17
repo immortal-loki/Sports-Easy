@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ academy.name }} - Sports Hub{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>{{ academy.name }}</h2>
+        </div>
+        <div class="card-body">
+            <div class="academy-details">
+                <div class="detail-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>{{ academy.location }}</span>
+                </div>
+                <div class="detail-row">
+                    <i class="fas fa-futbol"></i>
+                    <span>Sports Offered: {{ academy.sports_offered }}</span>
+                </div>
+                <div class="detail-row">
+                    <i class="fas fa-phone"></i>
+                    <span>Contact: {{ academy.contact_info }}</span>
+                </div>
+                <div class="detail-row">
+                    <i class="fas fa-star"></i>
+                    <span>Rating: {{ academy.rating }}/5</span>
+                </div>
+            </div>
+            
+            <div class="academy-description mt-4">
+                <h3>About the Academy</h3>
+                <p>Welcome to {{ academy.name }}, your premier destination for sports training and development. Our academy offers professional coaching in various sports disciplines, state-of-the-art facilities, and a supportive environment for athletes of all skill levels.</p>
+            </div>
+            
+            <div class="action-buttons mt-4">
+                <a href="{% url 'academy_admission' academy.id %}" class="btn btn-primary">Apply for Admission</a>
+                <a href="{% url 'academy_list' %}" class="btn btn-secondary">Back to Academies</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

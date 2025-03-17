@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to Sports Hub{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome to Sports Hub</h1>
+    <p>Your one-stop destination for all sports-related activities</p>
+</div>
+
+<section class="features">
+    <h2>What We Offer</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Sports Equipment</h3>
+            <p>Buy and sell sports equipment at great prices</p>
+            <a href="{% url 'item_list' %}" class="btn">Browse Equipment</a>
+        </div>
+        
+        <div class="card">
+            <h3>Turf Booking</h3>
+            <p>Find and book sports turfs near you</p>
+            <a href="{% url 'turf_list' %}" class="btn">Find Turfs</a>
+        </div>
+        
+        <div class="card">
+            <h3>Sports Events</h3>
+            <p>Participate in exciting sports events</p>
+            <a href="{% url 'event_list' %}" class="btn">View Events</a>
+        </div>
+        
+        <div class="card">
+            <h3>Sports Academies</h3>
+            <p>Join professional sports academies</p>
+            <a href="{% url 'academy_list' %}" class="btn">Explore Academies</a>
+        </div>
+    </div>
+</section>
+
+<section class="latest-updates">
+    <h2>Latest Updates</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>New Equipment Added</h3>
+            <p>Check out our latest collection of sports equipment</p>
+        </div>
+        
+        <div class="card">
+            <h3>Upcoming Events</h3>
+            <p>Don't miss out on our upcoming sports events</p>
+        </div>
+        
+        <div class="card">
+            <h3>Special Offers</h3>
+            <p>Take advantage of our special deals and discounts</p>
+        </div>
+    </div>
+</section>
+{% endblock %} 

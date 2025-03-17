@@ -1,0 +1,75 @@
+/* Admin Dropdown Styles */
+.admin-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.admin-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.admin-btn i {
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+}
+
+.admin-dropdown:hover .admin-btn i {
+    transform: rotate(180deg);
+}
+
+.admin-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--white);
+    min-width: 200px;
+    box-shadow: var(--shadow);
+    border-radius: 8px;
+    z-index: 1000;
+    border: 1px solid var(--border-color);
+}
+
+.admin-dropdown:hover .admin-menu {
+    display: block;
+}
+
+.admin-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.admin-menu a:hover {
+    background-color: rgba(26, 115, 232, 0.1);
+    color: var(--primary-color);
+}
+
+.admin-menu a:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.admin-menu a:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+/* Responsive Design for Admin Menu */
+@media (max-width: 768px) {
+    .admin-menu {
+        position: static;
+        box-shadow: none;
+        border: none;
+        background-color: transparent;
+        min-width: auto;
+    }
+
+    .admin-menu a {
+        padding: 8px 15px;
+    }
+} 

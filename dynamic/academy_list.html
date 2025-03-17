@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Sports Academies - Sports Hub{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center mb-4">Sports Academies</h1>
+    
+    <div class="grid">
+        {% if academies %}
+            {% for academy in academies %}
+            <div class="card academy-card">
+                <div class="academy-image placeholder">
+                    <div class="placeholder-content">
+                        <i class="fas fa-dumbbell"></i>
+                        <span>{{ academy.sports_offered }}</span>
+                    </div>
+                </div>
+                <div class="academy-details">
+                    <h3>{{ academy.name }}</h3>
+                    <p class="location">📍 {{ academy.location }}</p>
+                    <p class="description">Professional training in {{ academy.sports_offered }}. Join our comprehensive program led by experienced coaches.</p>
+                    <div class="academy-meta">
+                        <span class="rating">⭐ {{ academy.rating }}</span>
+                        <span class="contact">{{ academy.contact_info }}</span>
+                    </div>
+                    <a href="{% url 'academy_detail' academy.id %}" class="btn btn-primary mt-2">Learn More</a>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-info">No academies available at the moment. Please check back later.</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

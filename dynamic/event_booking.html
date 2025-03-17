@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Book Event Ticket - Sports Hub{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Book Ticket: {{ event.name }}</h2>
+        </div>
+        <div class="card-body">
+            <div class="event-details mb-4">
+                <p><i class="fas fa-calendar"></i> {{ event.date_time|date:"F d, Y" }}</p>
+                <p><i class="fas fa-map-marker-alt"></i> {{ event.location }}</p>
+                <p><i class="fas fa-ticket-alt"></i> ₹{{ event.ticket_price }} per ticket</p>
+            </div>
+            
+            <form method="POST" class="booking-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="number_of_tickets">Number of Tickets:</label>
+                    <input type="number" id="number_of_tickets" name="number_of_tickets" min="1" required class="form-control">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+                    <a href="{% url 'event_list' %}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

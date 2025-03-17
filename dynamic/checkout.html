@@ -1,0 +1,129 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'checkout.css' %}">
+
+<div class="checkout-container">
+    <h1>Checkout</h1>
+
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="checkout-summary">
+        <h2>Order Summary</h2>
+        
+        {% if booking_type == 'cart' %}
+            <div class="cart-items">
+                {% for item in cart_items %}
+                    <div class="cart-item">
+                        <div class="item-details">
+                            <h4>{{ item.name }}</h4>
+                            <p>Quantity: {{ item.quantity }}</p>
+                            <p>Price: ${{ item.price }}</p>
+                            <p>Subtotal: ${{ item.subtotal }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="total-amount">
+                <h3>Total Amount</h3>
+                <p>${{ total_amount }}</p>
+            </div>
+        {% elif booking_type == 'turf' %}
+            <div class="booking-details">
+                <h3>Turf Booking Details</h3>
+                <p>Turf: {{ turf.name }}</p>
+                <p>Date & Time: {{ slot_time }}</p>
+                <p>Duration: 1 hour</p>
+            </div>
+            <div class="total-amount">
+                <h3>Total Amount</h3>
+                <p>${{ total_amount }}</p>
+            </div>
+        {% elif booking_type == 'event' %}
+            <div class="booking-details">
+                <h3>Event Booking Details</h3>
+                <p>Event: {{ event.name }}</p>
+                <p>Number of Tickets: {{ number_of_tickets }}</p>
+                <p>Price per Ticket: ${{ event.ticket_price }}</p>
+            </div>
+            <div class="total-amount">
+                <h3>Total Amount</h3>
+                <p>${{ total_amount }}</p>
+            </div>
+        {% elif booking_type == 'academy' %}
+            <div class="booking-details">
+                <h3>Academy Admission Details</h3>
+                <p><strong>Academy:</strong> {{ academy.name }}</p>
+                <p><strong>Student Name:</strong> {{ admission.student_name }}</p>
+                <p><strong>Email:</strong> {{ admission.email }}</p>
+                <p><strong>Phone:</strong> {{ admission.phone }}</p>
+                <p><strong>Sport:</strong> {{ admission.sport }}</p>
+                <p><strong>Experience Level:</strong> {{ admission.experience }} years</p>
+            </div>
+            <div class="total-amount">
+                <h3>Admission Fee</h3>
+                <p>${{ total_amount }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="checkout-form">
+        <h2>Payment Information</h2>
+        <form method="POST" action="{% url 'process_payment' %}" id="payment-form">
+            {% csrf_token %}
+            
+            <input type="hidden" name="booking_type" value="{{ booking_type }}">
+            
+            <div class="form-group">
+                <label for="card_name">Cardholder Name</label>
+                <input type="text" id="card_name" name="card_name" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="card_number">Card Number</label>
+                <input type="text" id="card_number" name="card_number" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="expiry">Expiry Date</label>
+                <input type="text" id="expiry" name="expiry" class="form-control" placeholder="MM/YY" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" class="form-control" required>
+            </div>
+
+            <div class="payment-section">
+                <h3>Payment Method</h3>
+                <div class="payment-methods">
+                    <div class="payment-method selected">
+                        <img src="{% static 'images/visa.png' %}" alt="Visa">
+                    </div>
+                    <div class="payment-method">
+                        <img src="{% static 'images/mastercard.png' %}" alt="Mastercard">
+                    </div>
+                    <div class="payment-method">
+                        <img src="{% static 'images/paypal.png' %}" alt="PayPal">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="checkout-btn">Complete Payment</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Simple form validation
+    document.getElementById('payment-form').addEventListener('submit', function(e) {
+        // You can add client-side validation here if needed
+        console.log('Form submitted');
+    });
+</script>

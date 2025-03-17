@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Admission Successful - Sports Hub{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card success-card">
+        <div class="card-body text-center">
+            <div class="success-icon">
+                <i class="fas fa-check-circle fa-5x text-success"></i>
+            </div>
+            <h2 class="mt-4">Admission Successful!</h2>
+            <p class="lead">Your academy admission has been processed successfully.</p>
+            
+            {% if messages %}
+            <div class="alert alert-success">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            {% if admission %}
+            <div class="admission-details mt-4">
+                <h4>Admission Details</h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Admission ID</th>
+                            <td>#{{ admission.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Academy</th>
+                            <td>{{ admission.academy.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Student</th>
+                            <td>{{ admission.student_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Sport</th>
+                            <td>{{ admission.sport }}</td>
+                        </tr>
+                        <tr>
+                            <th>Admission Date</th>
+                            <td>{{ admission.date_admitted|date:"F j, Y, g:i a" }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="next-steps mt-4">
+                <h4>What's Next?</h4>
+                <p>You will receive an email with detailed instructions about your first day, what to bring, and how to prepare.</p>
+                <p>If you have any questions, please contact our admissions team.</p>
+            </div>
+            
+            <div class="mt-5">
+                <a href="{% url 'academy_list' %}" class="btn btn-primary">Explore More Academies</a>
+                <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

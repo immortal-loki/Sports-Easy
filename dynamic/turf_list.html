@@ -1,0 +1,40 @@
+<!-- app/templates/app/turf_booking.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Turfs - Sports Hub{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center mb-4">Available Turfs</h1>
+    
+    <!-- Location Filter Form -->
+    <div class="filter-section mb-4">
+        <form method="get" class="filter-form">
+            <div class="form-group">
+                <input type="text" name="location" value="{{ location }}" placeholder="Filter by location" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+    </div>
+
+    <div class="grid">
+        {% for turf in turfs %}
+        <div class="card turf-card">
+            <div class="turf-details">
+                <h3>{{ turf.name }}</h3>
+                <p class="location"><i class="fas fa-map-marker-alt"></i> {{ turf.location }}</p>
+                <p class="sport-type"><i class="fas fa-futbol"></i> {{ turf.type_of_sport }}</p>
+                <p class="price"><i class="fas fa-rupee-sign"></i> {{ turf.price_per_hour }}/hour</p>
+                <p class="rating"><i class="fas fa-star"></i> {{ turf.rating }}</p>
+                <a href="{% url 'turf_booking' turf.id %}" class="btn btn-primary">Book Now</a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="alert alert-info">
+            No turfs found in this location.
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

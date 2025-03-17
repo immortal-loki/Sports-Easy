@@ -1,0 +1,45 @@
+<!-- app/templates/app/turf_book_form.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Book Turf - {{ turf.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Book Turf: {{ turf.name }}</h2>
+        </div>
+        <div class="card-body">
+            <div class="turf-details mb-4">
+                <p><i class="fas fa-map-marker-alt"></i> {{ turf.location }}</p>
+                <p><i class="fas fa-futbol"></i> {{ turf.type_of_sport }}</p>
+                <p><i class="fas fa-rupee-sign"></i> ₹{{ turf.price_per_hour }}/hour</p>
+            </div>
+            
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <form method="POST" class="booking-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_slot_time">Select Time Slot:</label>
+                    {{ form.slot_time }}
+                    <small class="form-text text-muted">Please select a time slot for your 1-hour booking.</small>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+                    <a href="{% url 'turf_list' %}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
